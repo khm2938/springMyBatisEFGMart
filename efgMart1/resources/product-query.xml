@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <comment>Product Query</comment>
+    
+    <entry key="searchedProductList">
+        SELECT P.SERIAL_NO, P.ITEM_ID, I.MODEL_NAME, I.COLOR, 
+               P.STOCK_ORDER, P.IS_SOLD, 
+               TO_CHAR(P.IN_DATE, 'YYYY-MM-DD') AS IN_DATE, 
+               TO_CHAR(P.OUT_DATE, 'YYYY-MM-DD') AS OUT_DATE 
+        FROM PRODUCT P 
+        INNER JOIN ITEM I ON P.ITEM_ID = I.ITEM_ID 
+        WHERE P.ITEM_ID = ? 
+        ORDER BY SERIAL_NO ASC
+    </entry>
+
+    <entry key="insertStock">
+        INSERT INTO PRODUCT (SERIAL_NO, ITEM_ID, STOCK_ORDER) 
+        VALUES (?, ?, ?)
+    </entry>
+    
+</properties>
